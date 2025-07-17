@@ -1,0 +1,10 @@
+.App {
+  margin: 40px auto;
+  max-width: 360px;
+  height: auto;
+  padding: 16px;
+  border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+  background-image: url("vertical-shot-curvy-road-forest-covered-yellowing-trees-dried-leaves-autum.jpg");
+}
