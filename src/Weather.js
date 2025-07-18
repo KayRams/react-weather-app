@@ -1,48 +1,70 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import "./Weather.css";
-export default function Weather() {
-  return (
-    <div className="Weather">
-      <h1>WEATHER SEARCH</h1>
-      <form>
-        <input type="text" placeholder="Enter a city..." />
-        <button type="submit">🔎</button>
-      </form>
 
-      <div className="container">
-        <div className="row mt-5 mb-3">
-          <div className="col-6">
-            <strong>
-              <h3>20°C</h3>
-            </strong>
-          </div>
-          <div className="col-6">
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-              alt="Partly Cloudy"
-            />
+export default function Weather(props) {
+  const [weatherData, setWeatherData] = useState({ ready: false });
+  function handleResponse(response) {
+    console.log(response.data);
+    setWeatherData({
+      ready: true,
+      date: "Wednesday 10:00",
+      temperature: response.data.main.temp,
+      wind: response.data.wind.speed,
+      humidity: response.data.main.humidity,
+      description: response.data.weather[0].description,
+      city: response.data.name,
+      iconUrl: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+    });
+  }
+
+  if (weatherData.ready) {
+    return (
+      <div className="Weather">
+        <h1>WEATHER SEARCH</h1>
+        <form>
+          <input type="text" placeholder="Enter a city..." />
+          <button type="submit">🔎</button>
+        </form>
+
+        <div className="container">
+          <div className="row mt-5 mb-3">
+            <div className="col-6">
+              <strong>
+                <h3>{Math.round(weatherData.temperature)}°C</h3>
+              </strong>
+            </div>
+            <div className="col-6">
+              <img src={weatherData.iconUrl} alt={weatherData.description} />
+            </div>
           </div>
         </div>
+        <h2>{weatherData.city}</h2>
+        <ul>
+          <li>{weatherData.date}</li>
+          <li className="text-capitalize">{weatherData.description}</li>
+          <li>Humidity: {weatherData.humidity}</li>
+          <li>Wind: {weatherData.wind} km/h</li>
+        </ul>
+        <footer>
+          Open-sourced on{" "}
+          <strong>
+            <a
+              href="https://github.com/KayRams/react-weather-app"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Github
+            </a>
+          </strong>
+        </footer>
       </div>
-      <h2>New York, USA</h2>
-      <ul>
-        <li>Wednesday 11:00</li>
-        <li>Partly Cloudy</li>
-        <li>Humidity: 50%</li>
-        <li>Wind: 10 km/h</li>
-      </ul>
-      <footer>
-        Open-sourced on{" "}
-        <strong>
-          <a
-            href="https://github.com/KayRams/react-weather-app"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Github
-          </a>
-        </strong>
-      </footer>
-    </div>
-  );
+    );
+  } else {
+    const apiKey = "1a6432c5ca7b6f9b0bee45c98d54ea71";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+
+    return "Loading...";
+  }
 }
