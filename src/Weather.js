@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import FormattedDate from "./FormattedDate";
+import WeatherInfo from "./WeatherInfo";
 import axios from "axios";
 import "./Weather.css";
 
 export default function Weather(props) {
+  const [city, setCity] = useState(props.defaultCity);
   const [weatherData, setWeatherData] = useState({ ready: false });
   function handleResponse(response) {
     setWeatherData({
@@ -14,59 +15,43 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       description: response.data.weather[0].description,
       city: response.data.name,
-      iconUrl: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+      icon: response.data.weather[0].icon,
     });
+  }
+
+  function search() {
+    const apiKey = "1a6432c5ca7b6f9b0bee45c98d54ea71";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    search();
+  }
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
   }
 
   if (weatherData.ready) {
     return (
       <div className="Weather">
         <h1>WEATHER SEARCH</h1>
-        <form>
-          <input type="text" placeholder="Enter a city..." />
+        <form onSubmit={handleSubmit}>
+          <input
+            type="search"
+            placeholder="Enter a city..."
+            autoFocus="on"
+            onChange={handleCityChange}
+          />
           <button type="submit">🔎</button>
         </form>
-
-        <div className="container">
-          <div className="row mt-5 mb-3">
-            <div className="col-6">
-              <strong>
-                <h3>{Math.round(weatherData.temperature)}°C</h3>
-              </strong>
-            </div>
-            <div className="col-6">
-              <img src={weatherData.iconUrl} alt={weatherData.description} />
-            </div>
-          </div>
-        </div>
-        <h2>{weatherData.city}</h2>
-        <ul>
-          <li>
-            <FormattedDate date={weatherData.date} />
-          </li>
-          <li className="text-capitalize">{weatherData.description}</li>
-          <li>Humidity: {weatherData.humidity}%</li>
-          <li>Wind: {weatherData.wind} km/h</li>
-        </ul>
-        <footer>
-          Open-sourced on{" "}
-          <strong>
-            <a
-              href="https://github.com/KayRams/react-weather-app"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              Github
-            </a>
-          </strong>
-        </footer>
+        <WeatherInfo data={weatherData} />
       </div>
     );
   } else {
-    const apiKey = "1a6432c5ca7b6f9b0bee45c98d54ea71";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
-
+    search();
     return "Loading...";
   }
 }
