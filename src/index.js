@@ -9,6 +9,18 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
+    <footer>
+      Open-sourced on{" "}
+      <strong>
+        <a
+          href="https://github.com/KayRams/react-weather-app"
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          Github
+        </a>
+      </strong>
+    </footer>
   </React.StrictMode>
 );
 

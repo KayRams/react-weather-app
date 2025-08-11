@@ -4,10 +4,11 @@
 }
 .Weather ul {
   color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.5);
-  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
   border-radius: 15px;
-  padding: 0;
+  padding-left: 10px;
+  margin-bottom: 12px;
 }
 .Weather li {
   list-style: none;
@@ -20,17 +21,18 @@
   color: #ffffff;
   font-size: 32px;
   padding-top: 24px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   text-align: center;
 }
 .Weather h2 {
-  background-color: rgba(255, 255, 255, 0.5);
-  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
   border-radius: 15px;
   color: #ffffff;
   font-size: 30px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 12px;
   text-align: center;
 }
 .Weather h3 {
@@ -54,6 +56,17 @@
   padding-left: -5px;
 }
 
+#unit a {
+  text-decoration: none;
+  color: white;
+  font-weight: normal;
+}
+
+#unit a.active {
+  color: orangered;
+  font-weight: bold;
+}
+
 .Weather form {
   display: flex;
   justify-content: center;
@@ -62,8 +75,8 @@
   margin-left: 2px;
 }
 .Weather input {
-  background-color: rgba(255, 255, 255, 0.5);
-  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
   color: #ffffff;
   width: 100%;
   padding: 10px;
@@ -84,14 +97,14 @@
   margin-left: 5px;
 }
 
-.Weather a {
+footer a {
   text-decoration: none;
   color: orangered;
 }
 
-.Weather footer {
-  margin: 35px auto;
+footer {
+  margin: 40px auto;
   color: #ffffff;
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
 }

@@ -2,6 +2,17 @@ import React, { useState } from "react";
 import FormattedDate from "./FormattedDate";
 
 export default function WeatherInfo(props) {
+  function getLocalTimeFromOffset(offsetInSeconds) {
+    const nowUTC = new Date(
+      new Date().getTime() + new Date().getTimezoneOffset() * 60000
+    );
+    const localTime = new Date(nowUTC.getTime() + offsetInSeconds * 1000);
+    return localTime.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  }
+
   const [unit, setUnit] = useState("Celsius");
 
   function convertToFahrenheit(celsius) {
@@ -10,16 +21,16 @@ export default function WeatherInfo(props) {
 
   function handleCelsiusClick(event) {
     event.preventDefault();
-    setUnit("C");
+    setUnit("Celsius");
   }
 
   function handleFahrenheitClick(event) {
     event.preventDefault();
-    setUnit("F");
+    setUnit("Fahrenheit");
   }
 
   let temperature = props.data.temperature;
-  if (unit === "F") {
+  if (unit === "Fahrenheit") {
     temperature = convertToFahrenheit(temperature);
   }
 
@@ -33,11 +44,19 @@ export default function WeatherInfo(props) {
             </strong>
           </div>
           <div className="col-3 ps-0" id="unit">
-            <a href="/" onClick={handleCelsiusClick}>
+            <a
+              href="/"
+              onClick={handleCelsiusClick}
+              className={unit === "Celsius" ? "active" : ""}
+            >
               °C
             </a>{" "}
             |{" "}
-            <a href="/" onClick={handleFahrenheitClick}>
+            <a
+              href="/"
+              onClick={handleFahrenheitClick}
+              className={unit === "Fahrenheit" ? "active" : ""}
+            >
               °F
             </a>
           </div>
@@ -48,25 +67,17 @@ export default function WeatherInfo(props) {
       </div>
       <h2>{props.data.city}</h2>
       <ul>
+        <li>Local Time: {getLocalTimeFromOffset(props.data.timezone)}</li>
         <li>
-          <FormattedDate date={props.data.date} />
+          <FormattedDate
+            date={props.data.date}
+            timezone={props.data.timezone}
+          />
         </li>
         <li className="text-capitalize">{props.data.description}</li>
         <li>Humidity: {props.data.humidity}%</li>
         <li>Wind: {props.data.wind} km/h</li>
       </ul>
-      <footer>
-        Open-sourced on{" "}
-        <strong>
-          <a
-            href="https://github.com/KayRams/react-weather-app"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
-            Github
-          </a>
-        </strong>
-      </footer>
     </div>
   );
 }
