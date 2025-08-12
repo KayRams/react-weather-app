@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./WeatherForecast.css";
+import { DotLoader } from "react-spinners";
 
 export default function WeatherForecast({ coordinates }) {
   const [forecast, setForecast] = useState([]);
@@ -49,7 +50,17 @@ export default function WeatherForecast({ coordinates }) {
   }, [coordinates]);
 
   if (loading) {
-    return <p>Loading forecast...</p>;
+    return (
+      <div className="Spinner">
+        <DotLoader
+          color="orangered"
+          loading={true}
+          size={60}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      </div>
+    );
   }
 
   return (

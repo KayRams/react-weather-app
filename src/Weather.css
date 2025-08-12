@@ -7,20 +7,20 @@
   background-color: rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
   border-radius: 15px;
-  padding-left: 10px;
-  margin-bottom: 12px;
+  padding-left: 12px;
+  margin-bottom: 10px;
 }
 .Weather li {
   list-style: none;
   color: white;
-  padding: 5px;
+  padding: 3.8px;
 }
 .Weather h1 {
   font-weight: 600;
   line-height: 2;
   color: #ffffff;
-  font-size: 32px;
-  padding-top: 24px;
+  font-size: 31px;
+  padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
 }
@@ -32,7 +32,7 @@
   font-size: 30px;
   padding-top: 16px;
   padding-bottom: 16px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   text-align: center;
 }
 .Weather h3 {
@@ -97,14 +97,26 @@
   margin-left: 5px;
 }
 
+.ErrorMessage {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+.Spinner {
+  display: flex;
+  justify-content: center;
+}
+
 footer a {
   text-decoration: none;
   color: orangered;
 }
 
 footer {
-  margin: 40px auto;
+  margin-top: 10px;
+  margin-bottom: 30px;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
 }
