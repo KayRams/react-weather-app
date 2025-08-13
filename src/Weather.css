@@ -15,15 +15,7 @@
   color: white;
   padding: 5px;
 }
-.Weather h1 {
-  font-weight: 600;
-  line-height: 2;
-  color: #ffffff;
-  font-size: 31px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  text-align: center;
-}
+
 .Weather h2 {
   background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
@@ -71,7 +63,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 54px;
   margin-bottom: 20px;
   margin-left: 2px;
 }
@@ -82,7 +74,7 @@
   width: 100%;
   padding: 10px;
   padding-left: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 15px;
   font-size: 16px;
 }
