@@ -62,7 +62,6 @@ export default function Weather(props) {
 
   return (
     <div className="Weather">
-      <h1>WEATHER SEARCH</h1>
       {/* Always show the search form for city input */}
       <form onSubmit={handleSubmit}>
         <input

@@ -4,16 +4,16 @@
 }
 .Weather ul {
   color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
   border-radius: 15px;
   padding-left: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 .Weather li {
   list-style: none;
   color: white;
-  padding: 3.8px;
+  padding: 5px;
 }
 .Weather h1 {
   font-weight: 600;
@@ -25,14 +25,14 @@
   text-align: center;
 }
 .Weather h2 {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
   border-radius: 15px;
   color: #ffffff;
   font-size: 30px;
   padding-top: 16px;
   padding-bottom: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   text-align: center;
 }
 .Weather h3 {
@@ -71,11 +71,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 50px;
   margin-bottom: 20px;
   margin-left: 2px;
 }
 .Weather input {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(10px);
   color: #ffffff;
   width: 100%;
@@ -84,6 +85,16 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 15px;
   font-size: 16px;
+}
+
+.Weather input:focus {
+  outline: none;
+  border-color: orangered;
+}
+
+.Weather input::placeholder {
+  color: #ffffff;
+  opacity: 0.7;
 }
 
 .Weather button {
